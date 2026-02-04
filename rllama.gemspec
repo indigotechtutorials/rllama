@@ -5,6 +5,7 @@ require_relative 'lib/rllama/version'
 Gem::Specification.new do |spec|
   spec.name = 'rllama'
   spec.version = Rllama::VERSION
+  spec.platform = Gem::Platform::CURRENT
   spec.authors = ['Pete Matsyburka']
   spec.email = ['pete@docuseal.com']
   spec.summary = 'Ruby bindings for llama.cpp to run local LLMs with Ruby.'
@@ -47,7 +48,7 @@ Gem::Specification.new do |spec|
                      end
 
       if platform_dir
-        base_files + Dir["lib/rllama/#{platform_dir}/*"]
+        base_files + Dir["lib/rllama/#a{platform_dir}/*"]
       else
         base_files
       end

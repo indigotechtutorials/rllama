@@ -28,7 +28,12 @@ module Rllama
     end
 
     def initialize(args)
-      @args = args
+      @args = args[0..0] # override args to only pass model name.
+      
+      # Add output dir option.
+      # rrlama -o .
+      # rrlama -o ./custom/directory
+      @model_download_path = ARGV[2] if (ARGV[1] == '-o') && ARGV.size == 3
 
       @model_path = args.first
     end
@@ -38,7 +43,7 @@ module Rllama
 
       puts "\n#{colorize('Loading model...', :yellow)}"
 
-      model = Rllama.load_model(model_path)
+      model = Rllama.load_model(model_path, dir: @model_download_path)
       context = model.init_context
 
       puts colorize('Model loaded successfully!', :green)

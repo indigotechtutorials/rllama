@@ -14,9 +14,7 @@ module Rllama
     module_function
 
     def resolve(path_or_name, dir: nil)
-      dir ||= DEFAULT_DIR
-
-      dir = File.join(dir, 'models')
+      dir ||= File.join(DEFAULT_DIR, 'models')
 
       return path_or_name if local_file?(path_or_name)
 
